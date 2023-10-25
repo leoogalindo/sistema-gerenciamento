@@ -10,7 +10,7 @@ $_SESSION['formToken']['registration'] = password_hash(uniqid(),PASSWORD_DEFAULT
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration | SQLite Login and Registration</title>
+    <title>Cadastro</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/custom.css">
@@ -22,28 +22,28 @@ $_SESSION['formToken']['registration'] = password_hash(uniqid(),PASSWORD_DEFAULT
 <body class="bg-dark bg-gradient">
    <div class="h-100 d-flex jsutify-content-center align-items-center">
        <div class='w-100'>
-        <h1 class="py-5 text-center text-light">Create a New Account</h1>
+        <h1 class="py-5 text-center text-light">Crie uma conta nova</h1>
         <div class="card my-3 col-md-4 offset-md-4">
             <div class="card-body">
                 <!-- Registration Form Wrapper -->
                 <form action="" id="register-form">
                     <input type="hidden" name="formToken" value="<?= $_SESSION['formToken']['registration'] ?>">
-                    <center><small>Please enter your credentials.</small></center>
+                    <center><small>Por favor informe suas credenciais.</small></center>
                     <div class="mb-3">
-                        <label for="fullname" class="control-label">Fullname</label>
+                        <label for="fullname" class="control-label">Nome completo</label>
                         <input type="text" id="fullname" autofocus name="fullname" class="form-control rounded-0" required>
                     </div>
                     <div class="mb-3">
-                        <label for="username" class="control-label">Username</label>
+                        <label for="username" class="control-label">Usuário</label>
                         <input type="text" id="username" name="username" class="form-control rounded-0" required>
                     </div>
                     <div class="mb-3">
-                        <label for="password" class="control-label">Password</label>
+                        <label for="password" class="control-label">Senha</label>
                         <input type="password" id="password" name="password" class="form-control rounded-0" required>
                     </div>
                     <div class="mb-3 d-flex w-100 justify-content-between align-items-end">
-                        <a href="login.php">Already have an Account? Login here</a>
-                        <button class="btn btn-sm btn-primary rounded-0 my-1">Register</button>
+                        <a href="login.php">Já tem uma conta? Faça Login aqui</a>
+                        <button class="btn btn-sm btn-primary rounded-0 my-1">Cadastre-se</button>
                     </div>
                 </form>
                 <!-- Registration Form Wrapper -->
