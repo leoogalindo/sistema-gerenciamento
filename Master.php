@@ -22,7 +22,7 @@ Class Master extends DBConnection{
         $allowedToken = $_SESSION['formToken']['wallet_management'];
         if(!isset($formToken) || (isset($formToken) && $formToken != $allowedToken)){
             $resp['status'] = 'failed';
-            $resp['msg'] = "Security Check: Form Token is invalid.";
+            $resp['msg'] = "Token inválido.";
         }else{
             $user_id = $_SESSION['user_id'];
             $columns = [];
@@ -57,7 +57,7 @@ Class Master extends DBConnection{
                     }
                 }
                 $resp['status'] = 'success';
-                $resp['msg'] = "Wallet Data has been updated successfully.";
+                $resp['msg'] = "Wallet Data foi atualizada com sucesso.";
             }
         }
         return json_encode($resp);
@@ -74,7 +74,7 @@ Class Master extends DBConnection{
         $allowedToken = $_SESSION['formToken']['task-form'];
         if(!isset($formToken) || (isset($formToken) && $formToken != $allowedToken)){
             $resp['status'] = 'failed';
-            $resp['msg'] = "Security Check: Form Token is invalid.";
+            $resp['msg'] = "Token inválido.";
         }else{
             if(empty($task_id)){
                 $sql = "INSERT INTO `task_list` (`user_id`, `assigned_id`, `title`, `description`, `status`) VALUES ('{$user_id}', '{$assigned_id}', '{$title}', '{$description}', '{$status}')";
@@ -85,9 +85,9 @@ Class Master extends DBConnection{
             if($qry){
                 $resp['status'] = 'success';
                 if(empty($task_id))
-                $resp['msg'] = 'New Task has been addedd successfully';
+                $resp['msg'] = 'Nova tarefa adicionada com sucesso';
                 else
-                $resp['msg'] = 'Task Data has been updated successfully';
+                $resp['msg'] = 'Tarefa Data foi atualizada com sucesso';
                 $_SESSION['message']['success'] = $resp['msg'];
             }else{
                 $resp['status'] = 'failed';
@@ -101,13 +101,13 @@ Class Master extends DBConnection{
         $allowedToken = $_SESSION['formToken']['taskDetails'];
         if(!isset($formToken) || (isset($formToken) && $formToken != $allowedToken)){
             $resp['status'] = 'failed';
-            $resp['msg'] = "Security Check: Token is invalid.";
+            $resp['msg'] = "Token Inválido.";
         }else{
             $sql = "UPDATE `task_list` set `status` = '{$status}' where `task_id` = '{$task_id}'";
             $update = $this->query($sql);
             if($update){
                 $resp['status'] = 'success';
-                $resp['msg'] = "Task status has been updated successfully";
+                $resp['msg'] = "Status da tarefa foi atualizado com sucesso";
                 $_SESSION['message']['success'] = $resp['msg'];
             }else{
                 $resp['status'] = 'failed';
@@ -121,13 +121,13 @@ Class Master extends DBConnection{
         $allowedToken = $_SESSION['formToken']['tasks'];
         if(!isset($token) || (isset($formToken) && $formToken != $allowedToken)){
             $resp['status'] = 'failed';
-            $resp['msg'] = "Security Check: Token is invalid.";
+            $resp['msg'] = "Token Inválido.";
         }else{
             $sql = "DELETE FROM `task_list` where `task_id` = '{$id}'";
             $delete = $this->query($sql);
             if($delete){
                 $resp['status'] = 'success';
-                $resp['msg'] = 'The task data has been deleted successfully';
+                $resp['msg'] = 'Dados da tarefa foram deletados com sucesso';
                 $_SESSION['message']['success'] = $resp['msg'];
             }else{
                 $resp['status'] = 'failed';
