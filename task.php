@@ -13,22 +13,22 @@ $to = $_GET['to'] ?? date("Y-m-t");
                 <?php if($_SESSION['type'] == 1): ?>
                 <div class="row justify-content-end mb-3">
                     <div class="col-auto">
-                        <a class="btn btn-sm btn-primary rounded-0 d-flex align-items-center" href="./?page=manage_task"><i class="material-symbols-outlined">add</i> Add New</a>
+                        <a class="btn btn-sm btn-primary rounded-0 d-flex align-items-center" href="./?page=manage_task"><i class="material-symbols-outlined">add</i> Nova tarefa</a>
                     </div>
                 </div>
                 <?php endif; ?>
                 <div class="mb-3">
                     <div class="row align-items-end">
                         <div class="col-lg-4 col-md-5 col-sm-12 col-12">
-                            <label for="date_from">Date From</label>
+                            <label for="date_from">Inicio</label>
                             <input type="date" value="<?= $from ?>" class="form-control rounded-0" id="date_from" name="date_from" required="required">
                         </div>
                         <div class="col-lg-4 col-md-5 col-sm-12 col-12">
-                            <label for="date_to">Date To</label>
+                            <label for="date_to">Fim</label>
                             <input type="date" value="<?= $to ?>" class="form-control rounded-0" id="date_to" name="date_to" required="required">
                         </div>
                         <div class="col-lg-4 col-md-5 col-sm-12 col-12">
-                            <button class="btn btn-primary rounded-0 d-flex align-items-center" id="filter"><span class="material-symbols-outlined">filter_alt</span> Filter</button>
+                            <button class="btn btn-primary rounded-0 d-flex align-items-center" id="filter"><span class="material-symbols-outlined">filter_alt</span> Filtro</button>
                         </div>
                     </div>
                 </div>
@@ -48,12 +48,12 @@ $to = $_GET['to'] ?? date("Y-m-t");
                                 <th class="text-center">Date Added</th>
                                 <th class="text-center">Title</th>
                                 <?php if($_SESSION['type'] == 1): ?>
-                                <th class="text-center">Assigned To</th>
+                                <th class="text-center">Atribuida à</th>
                                 <?php else: ?>
-                                <th class="text-center">Assigned By</th>
+                                <th class="text-center">Atribuida por</th>
                                 <?php endif; ?>
                                 <th class="text-center">Status</th>
-                                <th class="text-center">Action</th>
+                                <th class="text-center">Ação</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -84,26 +84,26 @@ $to = $_GET['to'] ?? date("Y-m-t");
                                     <?php 
                                         switch($row['status']){
                                             case 0:
-                                                echo "<span class='badge bg-light border rounded-pill px-3 text-dark'>Pending</span>";
+                                                echo "<span class='badge bg-light border rounded-pill px-3 text-dark'>Pendente</span>";
                                                 break;
                                             case 1:
-                                                echo "<span class='badge bg-primary border rounded-pill px-3'>On-Progress</span>";
+                                                echo "<span class='badge bg-primary border rounded-pill px-3'>Em progresso</span>";
                                                 break;
                                             case 2:
-                                                echo "<span class='badge bg-warning border rounded-pill px-3'>For Review</span>";
+                                                echo "<span class='badge bg-warning border rounded-pill px-3'>Em análise</span>";
                                                 break;
                                             case 3:
-                                                echo "<span class='badge bg-danger border rounded-pill px-3'>Closed</span>";
+                                                echo "<span class='badge bg-danger border rounded-pill px-3'>Fechada</span>";
                                                 break;
                                         }
                                     ?>
                                 </td>
                                 <td class="text-center">
                                     <div class="btn-group btn-group-sm">
-                                        <a class="btn btn-sm btn-outline-dark rounded-0 view_data" href="./?page=view_task&id=<?= $row['task_id'] ?>" data-id='<?= $row['task_id'] ?>' title="View Task"><span class="material-symbols-outlined">subject</span></a>
+                                        <a class="btn btn-sm btn-outline-dark rounded-0 view_data" href="./?page=view_task&id=<?= $row['task_id'] ?>" data-id='<?= $row['task_id'] ?>' title="View Task"><span class="material-symbols-outlined">assunto</span></a>
                                         <?php if($_SESSION['type'] == 1): ?>
-                                        <a class="btn btn-sm btn-outline-primary rounded-0 edit_data" href="./?page=manage_task&id=<?= $row['task_id'] ?>" data-id='<?= $row['task_id'] ?>' title="Edit Task"><span class="material-symbols-outlined">edit</span></a>
-                                        <button class="btn btn-sm btn-outline-danger rounded-0 delete_data" type="button" data-id='<?= $row['task_id'] ?>' title="Delete Task"><span class="material-symbols-outlined">delete</span></button>
+                                        <a class="btn btn-sm btn-outline-primary rounded-0 edit_data" href="./?page=manage_task&id=<?= $row['task_id'] ?>" data-id='<?= $row['task_id'] ?>' title="Edit Task"><span class="material-symbols-outlined">editar</span></a>
+                                        <button class="btn btn-sm btn-outline-danger rounded-0 delete_data" type="button" data-id='<?= $row['task_id'] ?>' title="Delete Task"><span class="material-symbols-outlined">excluir</span></button>
                                         <?php endif; ?>
                                     </div>
                                 </td>
@@ -111,7 +111,7 @@ $to = $_GET['to'] ?? date("Y-m-t");
                             <?php endwhile; ?>
                             <?php if(!$tasks_qry->fetchArray()): ?>
                                 <tr>
-                                    <td colspan="6" class="text-center">No data found.</td>
+                                    <td colspan="6" class="text-center">Nenhuma informação encontrada.</td>
                                 </tr>
                             <?php endif; ?>
                         </tbody>
@@ -127,7 +127,7 @@ $to = $_GET['to'] ?? date("Y-m-t");
             e.preventDefault()
             var id = $(this).attr('data-id');
             start_loader()
-            var _conf = confirm(`Are you sure to delete this task data? This action cannot be undone`);
+            var _conf = confirm(`Tem certeza que quer deletar essa tarefa? Essa ação não pode ser desfeita`);
             if(_conf === true){
                 $.ajax({
                     url:'Master.php?a=delete_task',
